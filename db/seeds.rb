@@ -6,3 +6,29 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+require 'faker'
+
+puts 'Cleaning database...'
+Restaurant.destroy_all
+
+puts 'Creating 5 valid restaurants....'
+
+categories = %w[chinese italian japanese french belgian]
+
+5.times do
+  name = Faker::Restaurant.name
+  address = Faker::Address.full_address
+  phone_number = Faker::PhoneNumber.phone_number
+  # randomise the categories
+  category = categories.sample
+
+  Restaurant.create!(
+    name: name,
+    address: address,
+    phone_number: phone_number,
+    category: category
+  )
+end
+
+puts "Finished!"
