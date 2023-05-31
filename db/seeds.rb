@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
@@ -23,12 +24,25 @@ categories = %w[chinese italian japanese french belgian]
   # randomise the categories
   category = categories.sample
 
-  Restaurant.create!(
+  restaurant = Restaurant.create!(
     name: name,
     address: address,
     phone_number: phone_number,
-    category: category
+    category: categories.sample
   )
+
+  puts "Creating reviews..."
+
+  5.times do
+    rating = rand(0..5)
+    content = Faker::Lorem.paragraph
+
+    Review.create!(
+      rating: rating,
+      content: Faker::Restaurant.review,
+      restaurant_id: restaurant.id
+    )
+  end
 end
 
-puts "Finished!"
+puts 'Finished!'
