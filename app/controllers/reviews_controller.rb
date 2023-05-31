@@ -8,13 +8,13 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = Review.new(review_params)
-    @review.restaurant = @restaurant
-     if @review.save
+    @review = @restaurant.reviews.build(review_params)
+    if @review.save
       redirect_to restaurant_path(@restaurant)
-     else
-      render :new, status: :unprocessable_entity
-     end
+    else
+      # render :new, status: :unprocessable_entity
+      render 'restaurants/show'
+    end
 
   end
 

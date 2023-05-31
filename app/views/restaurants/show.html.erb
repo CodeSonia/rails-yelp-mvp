@@ -11,10 +11,11 @@
 
 <div>
   <p><strong>Reviews</strong></p>
-  <%= link_to "Create Review", new_restaurant_review_path(@restaurant), class: "btn btn-primary" %>
+  <%= render 'reviews/form', restaurant: @restaurant %>
   <ul class="list-group">
     <% @restaurant.reviews.order(created_at: :desc).each do |review| %>
       <li class="list-group-item"><%= review.content %></li>
     <% end %>
   </ul>
 </div>
+

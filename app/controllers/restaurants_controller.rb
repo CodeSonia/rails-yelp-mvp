@@ -9,7 +9,10 @@ class RestaurantsController < ApplicationController
   end
 
   # GET /restaurants/1 or /restaurants/1.json
-  def show; end
+  def show
+    # You need to create a new instance of review to show on the form
+    @review = Review.new
+  end
 
   # GET /restaurants/new
   def new
